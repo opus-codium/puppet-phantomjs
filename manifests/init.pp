@@ -56,12 +56,10 @@ class phantomjs (
       creates => '/usr/bin/phantomjs',
     }
   } elsif $::architecture == 'amd64' {
-    file { '/usr/local/bin/phantomjs':
-      ensure => file,
-      owner  => 'root',
-      group  => 'root',
-      mode   => '0755',
-      source => 'puppet:///modules/phantomjs/phantomjs-1.9.8-linux-x86_64',
+    $filename = "phantomjs-${version}-linux-x86_64.tar.bz2"
+
+    exec { "/usr/bin/wget https://bitbucket.org/ariya/phantomjs/downloads/${filename} && /bin/tar jxf /tmp/${filename} --strip-component 2 -C /usr/local/bin/ phantomjs-${version}-linux-x86_64/bin/phantomjs":
+      creates => '/usr/local/bin/phantomjs',
     }
   } else {
     fail "Architecture (${::architecture}) not supported"
