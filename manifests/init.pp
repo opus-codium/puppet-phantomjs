@@ -58,7 +58,7 @@ class phantomjs (
   } elsif $::architecture == 'amd64' {
     $filename = "phantomjs-${version}-linux-x86_64.tar.bz2"
 
-    exec { "/usr/bin/wget https://bitbucket.org/ariya/phantomjs/downloads/${filename} && /bin/tar jxf /tmp/${filename} --strip-component 2 -C /usr/local/bin/ phantomjs-${version}-linux-x86_64/bin/phantomjs":
+    exec { "/usr/bin/wget -O - https://bitbucket.org/ariya/phantomjs/downloads/${filename} | /bin/tar jxf - --strip-component 2 -C /usr/local/bin/ phantomjs-${version}-linux-x86_64/bin/phantomjs":
       creates => '/usr/local/bin/phantomjs',
     }
   } else {
