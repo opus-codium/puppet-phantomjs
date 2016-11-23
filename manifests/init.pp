@@ -4,7 +4,7 @@
 # https://github.com/aeberhardo/phantomjs-linux-armv6l
 # FIXME: In testing.
 class phantomjs (
-  $version = '2.2.1'
+  $version = '2.1.1'
 ) {
   if $::architecture == 'armv7l' {
     $basedir = '/home/deploy/phantomjs'
